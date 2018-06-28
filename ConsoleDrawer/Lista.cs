@@ -2,18 +2,17 @@
 
 namespace ConsoleDrawer
 {
-    public class Lista
+    public class Lista<T>
     {
-        private readonly object[] _items;
+        private readonly T[] _items;
         public int Count { get; private set;}
-   
         public Lista(int limit)
         {
-            _items = new object[limit];
+            _items = new T[limit];
             Count = 0;
         }
 
-        public void Add (object item)
+        public void Add (T item)
         {
             if (this.Count == _items.Length)
             {
@@ -23,9 +22,11 @@ namespace ConsoleDrawer
             this.Count++;
          }
 
-        public object GetAt(int idx)
+        public T GetAt(int idx)
         {
             return _items[idx];
+   
         }
     }
+
 }
