@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 namespace ConsoleDrawer
 {
+    public delegate bool PredicateDelegate<T> (T item);
+
     public class Lista<T> : ILista<T>, ILista
     {
         private readonly T[] _items;
@@ -44,15 +46,44 @@ namespace ConsoleDrawer
         #region  IEnumerable<T>
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            return new ListaEnumerator<T>(this);
+            //return new ListaEnumerator<T>(this);
+            foreach (var item in _items)
+            {
+                if (item != null)
+                {
+                    yield return item;
+                }
+            }
         }
 
         public IEnumerator GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
-       
+        public IEnumerable<T> FindPredicate( IPredicate<T> predicado)
+        {
+           foreach (var item in _items)
+            {
+                if (item != null && predicado.Match(item))
+                {
+                    yield return item;
+                }
+            }
+        }
+
+        public IEnumerable<T> FindDelegate(PredicateDelegate<T> predicado)
+        {
+            foreach (var item in _items)
+            {
+                if (item != null && predicado(item))
+                {
+                    yield return item;
+                }
+            }
+        }
+
+
         #endregion
     }
 
