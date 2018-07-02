@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ConsoleDrawer
 {
@@ -9,6 +10,7 @@ namespace ConsoleDrawer
         T GetAt(int idx);
         IEnumerable<T> FindPredicate(IPredicate<T> predicate);
         IEnumerable<T> FindDelegate(PredicateDelegate<T> predicate);
+        IEnumerable<T> FindFunc(Func<T, bool> predicado);
     }
 
     public interface ILista

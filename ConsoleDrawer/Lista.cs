@@ -83,6 +83,16 @@ namespace ConsoleDrawer
             }
         }
 
+        public IEnumerable<T> FindFunc(Func<T,bool> predicado)
+        {
+            foreach (var item in _items)
+            {
+                if (item != null && predicado(item))
+                {
+                    yield return item;
+                }
+            }
+        }
 
         #endregion
     }

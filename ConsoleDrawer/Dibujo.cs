@@ -26,6 +26,13 @@ namespace ConsoleDrawer
             this.BuscarImpares(listaInt);
             //Búsqueda con delegado a función anónima
             this.BuscarPares(listaInt);
+
+            //Métodos de extensión
+            string texto = "a2321";
+            Console.WriteLine ("Es numero: " + StringUtils.IsNumber(texto).ToString());
+            Console.WriteLine("Es numero: " + texto.IsNumber().ToString());
+
+            Console.WriteLine("Primer numero par: " + listaInt.GetFirst().ToString());
         }
 
         private void BuscarImpares(Lista<int> lista)
@@ -40,16 +47,21 @@ namespace ConsoleDrawer
             //PredicateDelegate<int> _isOdd = delegate (int i) { return i % 2 != 0;};
             //var listaImpares = lista.FindDelegate(_isOdd);
 
-            //Delegado con lambda
-            //PredicateDelegate<int> _isOdd = i => i % 2 != 0;
-            //var listaImpares = lista.FindDelegate(_isOdd);
-            var listaImpares = lista.FindDelegate(i => i % 2 != 0);
+            ////Delegado con lambda
+            ////PredicateDelegate<int> _isOdd = i => i % 2 != 0;
+            ////var listaImpares = lista.FindDelegate(_isOdd);
+            //var listaImpares = lista.FindDelegate(i => i % 2 != 0);
 
+            //Delegado generico Func
+            //Func<int, bool> _isOdd = i => i % 2 != 0;
+            //var listaImpares = lista.FindDelegate(_isOdd);
+            var listaImpares = lista.FindFunc(i => i % 2 != 0);
             Console.WriteLine("Impares:");
             foreach (var item in listaImpares)
             {
                 Console.WriteLine("- " + item.ToString());
             }
+
         }
 
         private bool IsOdd(int num)
