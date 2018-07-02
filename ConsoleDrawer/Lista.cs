@@ -95,6 +95,11 @@ namespace ConsoleDrawer
         }
 
         #endregion
+        //Indizador
+        public T this [int idx]
+        {
+            get { return _items[idx]; }
+        }
     }
 
 }

@@ -33,6 +33,8 @@ namespace ConsoleDrawer
             Console.WriteLine("Es numero: " + texto.IsNumber().ToString());
 
             Console.WriteLine("Primer numero par: " + listaInt.GetFirst().ToString());
+
+            Console.WriteLine("Por indice (2): " + listaInt[2]);
         }
 
         private void BuscarImpares(Lista<int> lista)
