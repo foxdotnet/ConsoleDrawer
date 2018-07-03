@@ -31,8 +31,9 @@ namespace ConsoleDrawer
                     {
                         dibujo.AddFigura(FiguraFactory.Instance.GetCuadrado (i  , 3 * i));
                     }
-                    
                     dibujo.Dibujar();
+                    //Probando indíce
+                    dibujo.GetByNombre<IFigura>("texto0").Dibujar();
                     break;
                 case (ConsoleKey.NumPad2):
                     Console.WriteLine("DOS");
@@ -44,6 +45,8 @@ namespace ConsoleDrawer
             }
             return resp;
         }
+
+       
     }
 }
 

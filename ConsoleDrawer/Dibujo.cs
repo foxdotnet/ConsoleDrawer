@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+
 namespace ConsoleDrawer
 {
     public class Dibujo
@@ -12,6 +14,22 @@ namespace ConsoleDrawer
             //this.Pruebas()
             _figuras = new List<IFigura>(10);
             Dibujar();
+        }
+
+        public IFigura this [string nombre]
+        {
+            get
+            {
+               return  _figuras.FirstOrDefault(x => x.Nombre == nombre);
+            }
+        }
+
+        public T GetByNombre<T>(string nombre) where T: class, IFigura 
+        {
+            //var figura = this[nombre];
+            //return figura == null ? null : (T)figura;
+            return this[nombre] as T;
+
         }
 
         public void AddFigura(IFigura figura)
