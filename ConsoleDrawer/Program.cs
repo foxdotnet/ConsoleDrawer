@@ -25,8 +25,15 @@ namespace ConsoleDrawer
             switch (info.Key)
             {
                 case (ConsoleKey.NumPad1):
-                    new Dibujo();
-                        break;
+                    var dibujo = new Dibujo();
+                    dibujo.AddFigura(new Texto ("texto0", 23,8, "Antes del factory"));
+                    for (int i = 0; i < 9; i++)
+                    {
+                        dibujo.AddFigura(FiguraFactory.Instance.GetCuadrado (i  , 3 * i));
+                    }
+                    
+                    dibujo.Dibujar();
+                    break;
                 case (ConsoleKey.NumPad2):
                     Console.WriteLine("DOS");
                     break;

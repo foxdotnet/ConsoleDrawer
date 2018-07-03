@@ -6,7 +6,8 @@ namespace ConsoleDrawer
     public class Cuadrado : Figura, IFigura
     {
         public int Lado {get;private set;}
-        public Cuadrado(int fila, int columna, int lado) : base(fila, columna)
+        
+        public Cuadrado(string nombre, int fila, int columna, int lado = 10) : base(nombre, fila, columna)
         {
             this.Lado = lado;
         }

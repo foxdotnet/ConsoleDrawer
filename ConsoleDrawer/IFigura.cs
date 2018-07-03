@@ -5,5 +5,6 @@ namespace ConsoleDrawer
     {
         void Dibujar();
         Coordenada Posicion  { get; }
+        string Nombre { get; }
     }
 }

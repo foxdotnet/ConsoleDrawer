@@ -1,21 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 namespace ConsoleDrawer
 {
     public class Dibujo
     {
-        private ILista<IFigura> _figuras;
+        private List<IFigura> _figuras;
 
         public Dibujo()
         {
-            _figuras = new Lista<IFigura>(10);
-            //_figuras[0] = new Texto(10, 5, "Dibujando texto en consola...");
-            _figuras.Add(new Texto(10, 5));
-            _figuras.Add(new Cuadrado(20, 30, 4));
-            this.Dibujar();
+            //this.Pruebas()
+            _figuras = new List<IFigura>(10);
+            Dibujar();
+        }
 
+        public void AddFigura(IFigura figura)
+        {
+            _figuras.Add(figura);
+        }
+
+        public void Dibujar()
+        {
+            foreach (Figura figura in _figuras)
+            {
+                figura?.Dibujar();
+            }
+        }
+
+        private void Pruebas()
+        {
             Console.WriteLine("Lista enteros:");
-
             var listaInt = new Lista<int>(8);
             listaInt.Add(4);
             listaInt.Add(13);
@@ -26,14 +40,11 @@ namespace ConsoleDrawer
             this.BuscarImpares(listaInt);
             //Búsqueda con delegado a función anónima
             this.BuscarPares(listaInt);
-
             //Métodos de extensión
             string texto = "a2321";
-            Console.WriteLine ("Es numero: " + StringUtils.IsNumber(texto).ToString());
+            Console.WriteLine("Es numero: " + StringUtils.IsNumber(texto).ToString());
             Console.WriteLine("Es numero: " + texto.IsNumber().ToString());
-
             Console.WriteLine("Primer numero par: " + listaInt.GetFirst().ToString());
-
             Console.WriteLine("Por indice (2): " + listaInt[2]);
         }
 
@@ -83,19 +94,6 @@ namespace ConsoleDrawer
             }
         }
 
-        public void Dibujar()
-        {
-            //for (int i = 0; i < _figuras.Count; i++)
-            //{
-            //    Debug.WriteLine("i = " + i);
-            //    ((Figura)_figuras.GetAt(i)).Dibujar();
-            //}
-
-            foreach (Figura figura in _figuras)
-            {
-                figura?.Dibujar();
-            }
-            Debug.Flush();
-        }
+       
     }
 }
