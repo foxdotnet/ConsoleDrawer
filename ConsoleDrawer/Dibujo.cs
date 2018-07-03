@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace ConsoleDrawer
 {
@@ -130,6 +132,20 @@ namespace ConsoleDrawer
             }
         }
 
+        public  void Guardar(string ruta)
+        {
+            var cuadrados = _figuras.OfType<Cuadrado>();
+            var textos = _figuras.OfType<Texto>();
+            //Tipo anónimo
+            var resultado = new
+            {
+                Cuadrados = cuadrados,
+                Textos = textos,
+                Count = _figuras.Count
+            };
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(resultado);
+            File.WriteAllText(ruta, json);
+        }
        
     }
 }

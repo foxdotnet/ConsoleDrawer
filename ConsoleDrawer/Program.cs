@@ -34,6 +34,8 @@ namespace ConsoleDrawer
                     dibujo.Dibujar();
                     //Probando indíce
                     dibujo.GetByNombre<IFigura>("texto0").Dibujar();
+                    //Guadar a Newtonsoft.Json
+                    dibujo.Guardar( @"dibujo.json"); 
                     break;
                 case (ConsoleKey.NumPad2):
                     Console.WriteLine("DOS");
