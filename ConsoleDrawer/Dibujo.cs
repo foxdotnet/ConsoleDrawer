@@ -32,6 +32,24 @@ namespace ConsoleDrawer
 
         }
 
+        public IEnumerable<string> Nombres
+        {
+            get
+            {
+                return _figuras
+                    .Select(f => f.Nombre)
+                    .OrderBy(x => x);
+            }
+        }
+
+        public IEnumerable<IFigura> Figuras
+        {
+            get
+            {
+                return _figuras;                    
+            }
+        }
+
         public void AddFigura(IFigura figura)
         {
             _figuras.Add(figura);
